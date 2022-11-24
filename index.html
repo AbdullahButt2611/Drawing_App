@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Let's Draw</title>
+</head>
+<body>
+
+    <div class="container">
+        <section class="tools-board">
+            <div class="row">
+                <label for="" class="title">Shapes</label>
+                <ul class="options">
+                    <li class="option">
+                        <img src="Assets/icons/rectangle.svg" alt="rectangle icon">
+                        <span>Rectangle</span>
+                    </li>
+
+                    <li class="option">
+                        <img src="Assets/icons/circle.svg" alt="Circle icon">
+                        <span>Circle</span>
+                    </li>
+
+                    <li class="option">
+                        <img src="Assets/icons/triangle.svg" alt="triangle icon">
+                        <span>Triangle</span>
+                    </li>
+
+                    <li class="option">
+                        <input type="checkbox" id="fill-color">
+                        <label for="fill-color">Fill Color</label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <label for="" class="title">Options</label>
+                <ul class="options">
+                    <li class="option">
+                        <img src="Assets/icons/brush.svg" alt="brush icon">
+                        <span>Brush</span>
+                    </li>
+
+                    <li class="option">
+                        <img src="Assets/icons/eraser.svg" alt="eraser icon">
+                        <span>Eraser</span>
+                    </li>
+
+                    <li class="option">
+                        <input type="range" id="size-slider">
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <label for="" class="title">Colors</label>
+                <ul class="options">
+                    <li class="option"></li>
+                    <li class="option"></li>
+                    <li class="option"></li>
+                    <li class="option"></li>
+                    <li class="option"></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <button class="clear-canvas">Clear Canvas</button>
+                <button class="save-img">Save As Image</button>
+            </div>
+        </section>
+
+        <section class="drawing-board"></section>
+    </div>
+
+</body>
+</html>
