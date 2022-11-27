@@ -14,7 +14,8 @@
 ## Features
 <br>
 Following are some of the new features and learning encountered while creating this amazing project:
--
+
+- 
 <br><br>
 
 ## Resources
@@ -35,7 +36,11 @@ Follwing resources have been used in maintaining this project:
 ## Technology Stack
 <br>
 Follwing technologies have been used at the core of this application to make it stand in the market place:
-- 
+
+- HTML
+- CSS
+- JS
+- Canvas
 <br><br>
 
 ## Advancement
