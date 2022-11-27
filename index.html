@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
     <title>Let's Draw</title>
+    <link rel="shortcut icon" href="Assets/pigment-tray.svg" type="image/x-icon">
 </head>
 <body>
 
@@ -40,7 +42,7 @@
             <div class="row">
                 <label for="" class="title">Options</label>
                 <ul class="options">
-                    <li class="option">
+                    <li class="option active">
                         <img src="Assets/icons/brush.svg" alt="brush icon">
                         <span>Brush</span>
                     </li>
@@ -56,24 +58,28 @@
                 </ul>
             </div>
 
-            <div class="row">
+            <div class="row colors">
                 <label for="" class="title">Colors</label>
                 <ul class="options">
                     <li class="option"></li>
+                    <li class="option selected"></li>
                     <li class="option"></li>
                     <li class="option"></li>
-                    <li class="option"></li>
-                    <li class="option"></li>
+                    <li class="option">
+                        <input type="color" id="color-picker" value="#4A98f7">
+                    </li>
                 </ul>
             </div>
 
-            <div class="row">
+            <div class="row buttons">
                 <button class="clear-canvas">Clear Canvas</button>
                 <button class="save-img">Save As Image</button>
             </div>
         </section>
 
-        <section class="drawing-board"></section>
+        <section class="drawing-board">
+            <canvas> </canvas>
+        </section>
     </div>
 
 </body>
