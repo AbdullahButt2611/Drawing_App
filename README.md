@@ -6,7 +6,8 @@
 
 ## Description
 <p align="justify"> 
- A simple paint app in html, css, js which allows user to draw different kind of shapes. In this app user can draw different shapes like rectangles, circles and triangles in their prefered colors. They can also erase or download their drawing as an image. All these functionalities are done with HTML 5 Canvas and vanilla javascript, no external framework or library is used.
+ A simple paint app in html, css, js which allows user to draw different kind of shapes. In this app user can draw different shapes like rectangles, circles and triangles in their prefered colors. They can also erase or download their drawing as an image. All these functionalities are done with HTML 5 Canvas and vanilla javascript, no external framework or library is used. <br>
+ The user can simply choose to draw the shape of ther own choice. The toggling effect between the shapes allows the user to identify the currently chosen shape of the canvas. Once the user clicks on the shape, it is colored with <strong> #4A98f7 </strong> colored text which shows that the particukar shape has been selected and is in use. The user can simply then click and drag the mouse to create the shapes of their desires.
 </p>
 
 <br><br>
@@ -15,13 +16,14 @@
 <br>
 Following are some of the new features and learning encountered while creating this amazing project:
 
-- 
+- We can snapshot the canvas current state at any point for further usage.
 <br><br>
 
 ## Resources
 <br>
 Follwing resources have been used in maintaining this project:
-- 
+
+- [Color Palletes](https://colorpalettes.colorion.co/#14) for choosing the theme of the website.
 <br><br>
 
 ## Demo
