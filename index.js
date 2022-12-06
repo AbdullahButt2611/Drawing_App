@@ -1,5 +1,8 @@
 const canvas = document.querySelector("canvas");
 const toolBtns = document.querySelectorAll(".tool");
+const fillColor = document.querySelector("#fill-color");
+const sizeSlider = document.querySelector("#size-slider");
+const colorBtns = document.querySelectorAll(".colors .option");
 const ctx = canvas.getContext("2d");
 
 
@@ -34,6 +37,14 @@ const drawing = (e)=>{
     {
         drawRect(e);
     }
+    else if(selectedTool === "circle")
+    {
+        drawCircle(e);
+    }
+    else  
+    {
+        drawTriangle(e);
+    }
     
 } 
 
@@ -60,15 +71,70 @@ toolBtns.forEach(btn => {
         document.querySelector(".options .active").classList.remove("active");
         btn.classList.add("active");
         selectedTool = btn.id;
-        console.log(selectedTool);
     });
 });
 
 
 
 
+
+
+colorBtns.forEach(btn => {
+    btn.addEventListener("click", ()=>{         //  Adding click event to all color buttons
+        // Removing active class from previously selected option and adding it to the currently selected option
+        document.querySelector(".options .selected").classList.remove("selected");
+        btn.classList.add("selected");
+        console.log(btn);
+    });
+});
+
+
+
+
+
+
+// Passing size slider value as brush size
+sizeSlider.addEventListener("change", () => brushWidth = sizeSlider.value);         
+
+
+
+
 const drawRect = (e) => {
-    ctx.strokeRect(e.offsetX, e.offsetY, prevMouseX - e.offsetX, prevMouseY - e.offsetY);
+
+    // if  fillcolor is not checked then the draw the rect with the borders
+    if(!fillColor.checked){
+        // creating rectangle according to mouse pointer
+        return ctx.strokeRect(e.offsetX, e.offsetY, prevMouseX - e.offsetX, prevMouseY - e.offsetY);
+    }
+
+    // draws the rectangle with color filled
+    ctx.fillRect(e.offsetX, e.offsetY, prevMouseX - e.offsetX, prevMouseY - e.offsetY);
+}
+
+
+
+
+const drawCircle = (e) => {
+
+    ctx.beginPath();            //Creating a new pathto draw a circle
+    // Getting radius for circle according to mouse pointer
+    let radius = Math.sqrt(Math.pow((prevMouseX - e.offsetX), 2) + ((prevMouseY - e.offsetY), 2));
+
+    ctx.arc(prevMouseX , prevMouseY, radius, 0, 2*Math.PI);
+    fillColor.checked ? ctx.fill() : ctx.stroke();
+}
+
+
+
+
+const drawTriangle = (e) => {
+
+    ctx.beginPath();            //Creating a new pathto draw a triangle
+    ctx.moveTo(prevMouseX, prevMouseY);     //Moving triangle to mouse pointer
+    ctx.lineTo(e.offsetX, e.offsetY);       //Creating first line according to mouse pointer
+    ctx.lineTo(prevMouseX * 2 - e.offsetX, e.offsetY);      //Creating the bottom line of triangle
+    ctx.closePath();        //Closing the path of the triangle so that the third line automatically draws
+    fillColor.checked ? ctx.fill() : ctx.stroke();
 }
 
 
@@ -77,3 +143,6 @@ const drawRect = (e) => {
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", () => isDrawing = false );       // To stop drawing when the mouse click is removed
+
+
+// 41:30
