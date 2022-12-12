@@ -17,6 +17,7 @@
 Following are some of the new features and learning encountered while creating this amazing project:
 
 - We can snapshot the canvas current state at any point for further usage.
+- We can also change the color of the brush as per requirement.
 <br><br>
 
 ## Resources
@@ -32,7 +33,8 @@ Follwing resources have been used in maintaining this project:
 ## Link To Video
 <br><br>
 
-## GUI
+## Graphical User Interface
+![The GUI of the project](Assets/GUI.png)
 <br><br>
 
 ## Technology Stack
@@ -46,6 +48,7 @@ Follwing technologies have been used at the core of this application to make it 
 <br><br>
 
 ## Advancement
+> No advancement required
 <br><br>
 
 ## Deployment Details
