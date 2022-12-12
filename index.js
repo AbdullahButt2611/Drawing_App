@@ -3,6 +3,9 @@ const toolBtns = document.querySelectorAll(".tool");
 const fillColor = document.querySelector("#fill-color");
 const sizeSlider = document.querySelector("#size-slider");
 const colorBtns = document.querySelectorAll(".colors .option");
+const colorPicker = document.querySelector("#color-picker");
+const clearCanvas = document.querySelector(".clear-canvas");
+const saveImage = document.querySelector(".save-img");
 const ctx = canvas.getContext("2d");
 
 
@@ -10,6 +13,7 @@ const ctx = canvas.getContext("2d");
 // Global Variables with default values
 let isDrawing = false;
 let brushWidth = 5;
+let selectedColor = "#000";
 let selectedTool = "brush";
 let prevMouseX, prevMouseY, snapshot;
 
@@ -19,7 +23,19 @@ let prevMouseX, prevMouseY, snapshot;
 window.addEventListener("load", ()=>{
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
+    setCanvasBackground();
 });
+
+
+
+
+const setCanvasBackground = () => {
+
+    // Setting the whole canvas to white so that the download image will have the white background
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = selectedColor;              //  setting the brush color back to selected color
+}
 
 
 
@@ -28,8 +44,12 @@ const drawing = (e)=>{
     if(! isDrawing) return;                     //  If is Drawing is false then ret8urn from here
     ctx.putImageData(snapshot, 0, 0);           //  Adding copied canvas data on this canvas
 
-    if(selectedTool === "brush")
+    if(selectedTool === "brush" || selectedTool === "eraser")
     {
+        // If selected color is eraser then the stroke style will be white
+        // Doing so will create the erasing effect on the canvas by painting white on the screen
+        ctx.strokeStyle = selectedTool === "eraser" ? "#fff" : selectedColor;
+
         ctx.lineTo(e.offsetX, e.offsetY);           //  Creates a new line with paramters x-coordinhate and y-coordinate
         ctx.stroke();                               //  Drawing/filling line with color
     }
@@ -58,6 +78,10 @@ const startDraw = (e)=>{
     ctx.beginPath();                            //  Starts Drawing from the mouse pointer and does not join the end points 
     ctx.lineWidth = brushWidth;                 //  Changing the brush size
 
+    // Changing the stroke and fill style of the brush to the user selected value
+    ctx.strokeStyle = selectedColor;
+    ctx.fillStyle = selectedColor;
+
     // copying canvas data and passing as snapshot value, this avoids dragging the image.
     snapshot = ctx.getImageData(0 ,0, canvas.width, canvas.height);
 }
@@ -84,7 +108,9 @@ colorBtns.forEach(btn => {
         // Removing active class from previously selected option and adding it to the currently selected option
         document.querySelector(".options .selected").classList.remove("selected");
         btn.classList.add("selected");
-        console.log(btn);
+
+        // Passing selected btn background color value as the selectedColor Value for brush
+        selectedColor =  window.getComputedStyle(btn).getPropertyValue("background-color");
     });
 });
 
@@ -140,9 +166,33 @@ const drawTriangle = (e) => {
 
 
 
+colorPicker.addEventListener("change", ()=>{
+    // passing the picked color value from the picker to be used as the brush color
+    colorPicker.parentElement.style.background = colorPicker.value;
+    colorPicker.parentElement.click();
+});
+
+
+
+
+clearCanvas.addEventListener("click", ()=>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);           //  Clearing whole canvas
+    setCanvasBackground();
+});
+
+
+
+
+saveImage.addEventListener("click", ()=>{
+    const link = document.createElement("a");
+    link.download = `${Date.now()}.jpg`;
+    link.href = canvas.toDataURL();
+    link.click();
+});
+
+
+
+
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", () => isDrawing = false );       // To stop drawing when the mouse click is removed
-
-
-// 41:30
