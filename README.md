@@ -28,6 +28,7 @@ Follwing resources have been used in maintaining this project:
 <br><br>
 
 ## Demo
+This web based application has been deployed on vercel. If you want to give it a tru then you can access this app through the original link of [Drawing App](https://rebrand.ly/DrawingApp_MABCORP)
 <br><br>
 
 ## Link To Video
